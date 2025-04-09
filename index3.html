@@ -1,0 +1,145 @@
+<!-- Zadanie 1 -->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moja strona</title>
+  <script>
+    function zmienTekst() {
+      document.getElementById("tekst").innerHTML = "Witaj na mojej stronie!";
+      alert("Witaj na mojej stronie!");
+    }
+  </script>
+</head>
+<body>
+  <h1 id="tekst">Witaj!</h1>
+  <button onclick="zmienTekst()">Kliknij mnie</button>
+</body>
+</html>
+
+<!-- Zadanie 2 -->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moja strona</title>
+  <script>
+    function wyswietlLiczbyParzyste() {
+      let tekstDoWyswietlenia = '';
+      for (let i = 0; i <= 100; i++) {
+        if (i % 2 === 0) {
+          tekstDoWyswietlenia += i + ' ';
+        }
+      }
+      console.log(tekstDoWyswietlenia);
+    }
+
+    wyswietlLiczbyParzyste();
+  </script>
+</head>
+<body>
+  <h1>Sprawdź konsolę</h1>
+</body>
+</html>
+
+<!-- Zadanie 3 -->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moja strona</title>
+  <script>
+    function dodajLiczby() {
+      const liczba1 = parseInt(prompt("Podaj pierwszą liczbę całkowitą:"));
+      const liczba2 = parseInt(prompt("Podaj drugą liczbę całkowitą:"));
+      if (isNaN(liczba1) || isNaN(liczba2)) {
+        alert("Proszę podać poprawne liczby całkowite.");
+      } else {
+        const suma = liczba1 + liczba2;
+        alert("Wynik dodawania: " + suma);
+      }
+    }
+    window.onload = dodajLiczby;
+  </script>
+</head>
+<body>
+  <h1>Podaj dwie liczby całkowite</h1>
+</body>
+</html>
+
+<!-- Zadanie 4 -->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aktualny Czas</title>
+  <script>
+    function wyswietlCzas() {
+      const teraz = new Date();
+      const godzina = teraz.getHours().toString().padStart(2, '0');
+      const minuta = teraz.getMinutes().toString().padStart(2, '0');
+      const sekunda = teraz.getSeconds().toString().padStart(2, '0');
+      const czas = godzina + ':' + minuta + ':' + sekunda;
+      document.getElementById('czas').textContent = czas;
+    }
+    setInterval(wyswietlCzas, 1000);
+  </script>
+</head>
+<body>
+  <h1>Aktualny Czas:</h1>
+  <div id="czas"></div>
+</body>
+</html>
+
+<!-- Zadanie 5 -->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gra w Zgadywanie Liczby</title>
+  <script>
+    let wylosowanaLiczba;
+    let liczbaProb = 0;
+    function rozpocznijGre() {
+      wylosowanaLiczba = Math.floor(Math.random() * 101);
+      liczbaProb = 0;
+      document.getElementById("komunikat").textContent = "Zgadnij liczbę z przedziału 0-100!";
+      document.getElementById("propozycja").value = ""; 
+    }
+    function sprawdzLiczbe() {
+      const propozycja = parseInt(document.getElementById("propozycja").value);
+      liczbaProb++;
+      if (isNaN(propozycja)) {
+        alert("Proszę wprowadzić poprawną liczbę!");
+        return;
+      }
+      if (propozycja < wylosowanaLiczba) {
+        document.getElementById("komunikat").textContent = "Twoja liczba jest za mała! Spróbuj ponownie.";
+      } else if (propozycja > wylosowanaLiczba) {
+        document.getElementById("komunikat").textContent = "Twoja liczba jest za duża! Spróbuj ponownie.";
+      } else {
+        alert("Gratulacje! Zgadłeś liczbę w " + liczbaProb + " próbach.");
+        location.reload();
+      }
+    }
+    window.onload = rozpocznijGre;
+  </script>
+</head>
+<body>
+  <h1>Gra w Zgadywanie Liczby</h1>
+  <p id="komunikat">Zgadnij liczbę z przedziału 0-100!</p>
+  <input type="number" id="propozycja" min="0" max="100" placeholder="Podaj liczbę">
+  <button onclick="sprawdzLiczbe()">Sprawdź</button>
+  <button onclick="rozpocznijGre()">Nowa Gra</button>
+</body>
+</html>
